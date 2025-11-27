@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "FontePrincipal";
+  src: url("./fonts/Enchanted\ Land.otf") format("opentype");
+}
+
+html, body {
+  margin: 0;           /* Remove a margem padrão externa */
+  padding: 0;          /* Remove o padding padrão interno */
+  width: 100%;         /* Garante que ocupe 100% da largura */
+  overflow-x: hidden;  /* Previne barras de rolagem horizontais indesejadas */
+  scroll-behavior: smooth;
+}
+
+/* Header */
+
+.headerStyle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 80px;
+
+  background-color: #ffffff;
+  color: black;
+  padding: 0 20px;
+
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+
+  z-index: 999; /* fica por cima dos cards */
+}
+
+.home {
+  cursor: pointer; 
+  align-items: center;
+  display: flex;
+  height: 40px;
+}
+
+.sectionHeader {
+  cursor: pointer; 
+  align-items: center;
+  display: flex;
+  height: 40px;
+}
+
+.sectionHeader:hover {
+  height: 50px;
+  transform: translateY(-2px);
+}
+
+.containerEsquerda {
+    align-items : "center";
+    display: 'flex';
+}
+
+
+/* Corpo do site */
+.corpoSite {
+    background-image: url('./images/brick.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    margin: 0px;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
+
+    transition: opacity 0.2s ease-in-out;
+}
+
+.secJogos {
+  width: 100%;
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.secJogos h2 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.secRetro {
+  width: 100%;
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.secRetro h2 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}

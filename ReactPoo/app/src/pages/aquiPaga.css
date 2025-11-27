@@ -1,0 +1,74 @@
+.carrinho-container {
+    margin: 100px auto;
+    background: #f1f1f1;
+    padding: 32px;
+    border-radius: 20px;
+    max-width: 800px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+
+.carrinho-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+
+.carrinho-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.carrinho-item {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-nome {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.item-preco {
+    font-size: 18px;
+    margin-top: 6px;
+    color: #444;
+}
+
+.item-quantidade {
+    font-size: 16px;
+    margin-top: 4px;
+    color: #555;
+}
+
+.remove-button {
+    background: #ff4d4d; /* Vermelho para indicar remoção */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+.remove-button:hover {
+    background: #cc0000; /* Tom mais escuro no hover */
+}
+/* Garantir que o item tenha flex para alinhar botão à direita */
+.carrinho-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Já existe, mas confirme */
+}
+

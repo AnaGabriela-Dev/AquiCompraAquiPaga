@@ -1,0 +1,76 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;     /* permite quebrar linha */
+  gap: 20px;           /* espaço entre cards */
+  justify-content: center;  /* mantém tudo alinhado */
+  padding-top: 100px;  /* para não cobrir o header */
+  border-radius: 20px;
+  padding: 32px;
+  background: #111;
+  min-height: 10px;
+  max-width: 80%;
+}
+
+/* Card */
+.game-card-retro {
+  background: #1b1b1b;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  margin: 10px;
+  padding: 32px;
+  max-width: 280px; /* <-- Tamanho fixo opcional */
+  width: 100%;
+  height: 360px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  transition: 0.25s;
+}
+
+.game-card-retro:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+}
+
+/* Imagem */
+.game-card-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+/* Texto */
+.game-card-title {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.game-card-description {
+  color: #c9c9c9;
+  margin-bottom: 12px;
+}
+
+.game-card-price {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+/* Botão */
+.game-card-button {
+  background: #f4b400;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.game-card-button:hover {
+  background: #ffcc3d;
+}
