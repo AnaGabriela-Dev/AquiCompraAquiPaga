@@ -10,21 +10,21 @@ export const jogosi = [
     id: 2,
     nome: 'Undertale',
     descricao: 'Undertale é um aclamado RPG independente onde suas escolhas entre lutar ou poupar monstros alteram drasticamente o enredo e o final do jogo.',
-    preco: 20.00,
+    preco: 19.99,
     imagem_url: '/imagens/Undertale.JPG'
   },
   {
     id: 3,
-    nome: 'Alice Madness Returns',
-    descricao: 'Jogo de ação e aventura em terceira pessoa que explora uma versão sombria e distorcida do País das Maravilhas, refletindo o estado psicológico conturbado de Alice Liddell.',
-    preco: 16.00,
-    imagem_url: '/imagens/alice-madness-returns.jpg'
+    nome: 'Omori',
+    descricao: 'Omori é um jogo eletrônico de RPG de 2020 desenvolvido pelo estúdio indie Omocat. Baseado na série de webcomics do diretor, Omori, há destaque para conceitos como ansiedade e depressão e elementos de terror psicológico.',
+    preco: 37.99,
+    imagem_url: '/imagens/omori.jpg'
   },
   {
     id: 4,
     nome: 'Cuphead',
     descricao: 'Jogo de ação e tiros (run and gun) com estilo visual inspirado nas animações da década de 1930, conhecido por sua dificuldade desafiadora.',
-    preco: 50.00,
+    preco: 36.99,
     imagem_url: '/imagens/cuphead.jpg'
   },
   {
@@ -38,14 +38,14 @@ export const jogosi = [
     id: 6,
     nome: 'Hollow Knight',
     descricao: 'Jogo de ação e aventura 2D do gênero metroidvania ambientado em Hallownest, um reino subterrâneo em ruínas.',
-    preco: 55.00,
+    preco: 46.99,
     imagem_url: '/imagens/hollowknight.jpg'
   },
   {
     id: 7,
     nome: 'Skull The Hero Slayer',
     descricao: 'Jogo de plataforma 2D com elementos rogue-lite onde Skul deve resgatar o Rei Demônio, usando seu poder de trocar caveiras.',
-    preco: 53.00,
+    preco: 58.90,
     imagem_url: '/imagens/Skull.jpg'
   },
   {
@@ -57,17 +57,17 @@ export const jogosi = [
   },
   {
     id: 9,
-    nome: 'Portal',
-    descricao: 'Jogo de quebra-cabeça em primeira pessoa da Valve, conhecido por sua jogabilidade inovadora e humor negro.',
-    preco: 30.00,
-    imagem_url: '/imagens/Portal.jpg'
+    nome: 'One Shot',
+    descricao: 'OneShot é um jogo surreal de quebra-cabeça/aventura com visão de cima e mecânicas únicas. Você deve guiar uma criança por um mundo misterioso em uma missão para restaurar seu sol há muito extinto. O mundo sabe que você existe.',
+    preco: 32.99,
+    imagem_url: '/imagens/OneShot.jpg'
   },
   {
     id: 10,
-    nome: 'Portal 2',
-    descricao: 'Sequência direta de Portal, expandindo jogabilidade, humor e narrativa em uma experiência mais completa.',
-    preco: 35.00,
-    imagem_url: '/imagens/portal2.jpg'
+    nome: 'Celeste',
+    descricao: 'Ajude Madeline a sobreviver aos seus demônios interiores em sua jornada até o topo da Montanha Celeste, neste jogo de plataforma super preciso dos criadores de TowerFall.',
+    preco: 59.99,
+    imagem_url: '/imagens/Celeste.jpg'
   },
   {
     id: 11,

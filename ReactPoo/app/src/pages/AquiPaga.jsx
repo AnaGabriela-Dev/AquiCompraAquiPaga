@@ -10,7 +10,7 @@ export default function AquiPaga({cart, removeFromCart}) {
             <div className="carrinho-container">
                 <h1 className="carrinho-title">Carrinho</h1>
 
-                {cart.length === 0 && <p>O carrinho está vazio :</p>}
+                {cart.length === 0 && <p className="empty-cart">Vazio</p>}
 
                 {cart.length > 0 && (
                     <div className="carrinho-list">

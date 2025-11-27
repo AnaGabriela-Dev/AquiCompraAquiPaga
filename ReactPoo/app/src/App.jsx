@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { api } from './lib/axios';
 import { useState, useEffect } from 'react';
+import { Toaster, toast } from "react-hot-toast";
+
 
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
@@ -13,13 +15,29 @@ export default function App() {
 
   const addToCart = (item) => {
     const itemExistente = cart.find((c) => c.id === item.id);
+
     if (itemExistente) {
-      alert('Este item já está no carrinho!');
+      toast.error("Esse item já está no carrinho!", {
+        icon: "💔",
+        style: {
+          background: "#ffb6c1",
+          color: "#fff",
+          fontWeight: "bold",
+        },
+      });
       return;
-    } 
-    
-    alert('Adicionado ao carrinho!');
+    }
+
     setCart([...cart, item]);
+
+    toast.success(`${item.nome} adicionado ao carrinho!`, {
+      icon: "🛒✨",
+      style: {
+        background: "#d4ffe1",
+        color: "#2b7a4b",
+        fontWeight: "bold",
+      },
+    });
   };
 
   const removeFromCart = (id) => {
@@ -42,6 +60,16 @@ export default function App() {
 
   return (
     <>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            borderRadius: "12px",
+            padding: "12px 16px",
+            fontFamily: "Poppins",
+          },
+        }}
+      />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home addToCart={addToCart} />} />

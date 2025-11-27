@@ -47,14 +47,14 @@ export function Corpo({addToCart}) {
                 <h2 style={{
                     marginBottom: "60px"
                 }}>Jogos</h2>
-                <GameCards games={jogosi} AddToCart={addToCart} />
+                <GameCards games={jogosi} addToCart={addToCart} />
             </section>
 
             <section className="secRetro">
                 <h2 style={{
                     marginBottom: "60px"
                 }}>Retro</h2>
-                <RetroCard games={jogosr} AddToCart={addToCart} />
+                <GameCards games={jogosr} addToCart={addToCart} />
             </section>
         </div>
     );

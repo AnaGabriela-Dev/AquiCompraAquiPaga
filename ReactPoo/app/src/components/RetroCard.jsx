@@ -1,6 +1,6 @@
 import "./RetroCard.css";
 
-export function RetroCard({ games, AddToCart }) {
+export function RetroCard({ games, addToCart }) {
   return (
     <div className="cards-container">
       {games.map((game) => (
@@ -17,7 +17,7 @@ export function RetroCard({ games, AddToCart }) {
 
           <button 
             className="game-card-button" 
-            onClick={() => AddToCart(game)}
+            onClick={() => addToCart(game)}
           >
             Adicionar ao carrinho
           </button>
