@@ -1,0 +1,23 @@
+.logout-style {
+    font-size: 20px;
+    padding: 20px; 
+    cursor: pointer;
+}
+
+.user-style {
+    font-size: 20px;
+    padding: 20px; 
+    cursor: pointer;
+}
+
+.user-style:hover {
+    height: 21px;
+    transform: translateY(-2px);
+    color: rgb(52, 117, 174);
+}
+
+.logout-style:hover {
+    height: 21px;
+    transform: translateY(-2px);
+    color: rgb(195, 0, 0);
+}

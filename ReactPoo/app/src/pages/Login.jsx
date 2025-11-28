@@ -2,6 +2,8 @@ import { Header } from "../components/Header";
 import { padraoFieldStyle } from "../styles/textFieldStyles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // <--- 1. Importação para mudar de página
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 import TextField from '@mui/material/TextField';
 import IconButton from "@mui/material/IconButton";
@@ -13,6 +15,7 @@ import Button from "@mui/material/Button";
 import "./login.css"
 
 export default function Login() {
+  const { login } = useContext(UserContext);
   const navigate = useNavigate(); // <--- 2. Hook de navegação
   const [mostrarSenha, setMostrarSenha] = useState(false);
   
@@ -39,6 +42,7 @@ export default function Login() {
       if (resposta.ok) {
         // SUCESSO: O Java mandou o objeto Cliente (JSON)
         const cliente = await resposta.json();
+        login(cliente);  // <-- SALVA O USUÁRIO NO CONTEXTO
         alert("Bem-vindo(a), " + cliente.nome + "!");
         navigate("/"); // Redireciona para a Home (Vitrine)
       } else {

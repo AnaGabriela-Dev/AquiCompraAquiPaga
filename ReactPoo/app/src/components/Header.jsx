@@ -1,10 +1,15 @@
 import logo from "../images/Xadrez.png"
 import carrinho from "../images/carrinho.jpg"
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import toast from "react-hot-toast";
 
 import "../index.css"
+import "../styles/header.css"
 
 export function Header({}){
+    const { user, logout } = useContext(UserContext);
     const navigate = useNavigate();
 
     const containerEsquerda = {
@@ -41,15 +46,15 @@ export function Header({}){
         if (window.location.pathname === "/") {
             window.scrollTo({ top: 680, behavior: "smooth" });
         } else {
-            navigate("/", { state: { scrollTo: "jogos" } });
+            navigate("/", { state: { scrollTo: 680 } });
         }
     }
 
     function irARetro() {
         if (window.location.pathname === "/") {
-            window.scrollTo({ top: 3440, behavior: "smooth" });
+            window.scrollTo({ top: 3480, behavior: "smooth" });
         } else {
-            navigate("/", { state: { scrollTo: "retro" } });
+            navigate("/", { state: { scrollTo: 3480 } });
         }
     }
 
@@ -92,13 +97,43 @@ export function Header({}){
                     <img style={{paddingRight: "40px"}} src={carrinho}/>
                 </section>
 
-                <section className="sectionHeader" onClick={irParaCadastro}>
-                    <h4 style={loginStyle}>Cadastrar</h4>
-                </section>
-                <section className="sectionHeader" onClick={logar}>
-                    <h4 style={loginStyle}>Logar</h4>
-                </section>
+                {user ? (
+                    <>
+                    <h3 className="user-style" 
+                        onClick={() => navigate("/perfil")}
+                    >
+                        Olá, {user.nome}!
+                    </h3>
+
+                    <h4 className="logout-style" 
+                        onClick={() => {
+                            logout();  
+                            toast.success("Você saiu da sua conta!", {
+                            duration: 3000,
+                            style: {
+                                background: "#333",
+                                color: "#fff",
+                                fontSize: "18px"
+                            }
+                            });
+                            navigate("/");  // redirecionar após sair
+                        }}
+                    >
+                        Logout
+                    </h4>
+                    </>
+                ) : (
+                    <>
+                    <section className="sectionHeader" onClick={irParaCadastro}>
+                        <h4 style={loginStyle}>Cadastrar</h4>
+                    </section>
+                    <section className="sectionHeader" onClick={logar}>
+                        <h4 style={loginStyle}>Logar</h4>
+                    </section>
+                    </>
+                )}
             </div>
+
         </header>
     )
 }

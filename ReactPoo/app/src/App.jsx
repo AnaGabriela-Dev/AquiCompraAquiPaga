@@ -3,12 +3,11 @@ import { api } from './lib/axios';
 import { useState, useEffect } from 'react';
 import { Toaster, toast } from "react-hot-toast";
 
-
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import AquiPaga from "./pages/AquiPaga";
-
+import Perfil from "./pages/Perfil";
 
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -61,7 +60,8 @@ export default function App() {
   return (
     <>
       <Toaster
-        position="top-right"
+        position="top-center"
+        reverseOrder={false}
         toastOptions={{
           style: {
             borderRadius: "12px",
@@ -76,6 +76,7 @@ export default function App() {
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/login" element={<Login />} />
           <Route path="/aquiPaga" element={<AquiPaga cart={cart} removeFromCart={removeFromCart} />} />
+          <Route path="/perfil" element={<Perfil />} />
         </Routes>
       </BrowserRouter>
     </>
