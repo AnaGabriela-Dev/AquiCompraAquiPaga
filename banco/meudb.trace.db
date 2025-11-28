@@ -329,3 +329,6 @@ insert into jogosr (nome, descricao, imagem_url) values('Super Bomberman 4', 'Co
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+2025-11-27 23:31:13.472980-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select * [*]clientes"; SQL statement:
+select * clientes [42000-232]

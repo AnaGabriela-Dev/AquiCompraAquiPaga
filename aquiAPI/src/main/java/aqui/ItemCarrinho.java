@@ -1,11 +1,11 @@
 package aqui;
 
 public class ItemCarrinho {
-    private Produto_indie produto;
+    private ProdutoIndie produto;
     private int quantidade;
     private double precoUni;
 
-    public ItemCarrinho(Produto_indie produto, int quantidade, double precoUni) {
+    public ItemCarrinho(ProdutoIndie produto, int quantidade, double precoUni) {
         this.produto = produto;
         this.quantidade = quantidade;
         this.precoUni = precoUni;
@@ -19,7 +19,7 @@ public class ItemCarrinho {
         this.quantidade = quantidade;
     }
 
-    public Produto_indie getProduto() {
+    public ProdutoIndie getProduto() {
         return this.produto;
     }
 

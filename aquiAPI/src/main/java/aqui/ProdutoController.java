@@ -1,8 +1,6 @@
 package aqui;
 
-import aqui.Produto_retro;
-import aqui.Produto_indie;
-import aqui.repository.ProdutoRetroRepository;
+import  aqui.repository.ProdutoRetroRepository;
 import aqui.repository.ProdutoIndieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,24 +23,24 @@ public class ProdutoController {
     // --- ROTAS PARA RETRO ---
 
     @GetMapping("/retro") // Acessa em: /jogos/retro
-    public List<Produto_retro> listarRetros() {
+    public List<ProdutoRetro> listarRetros() {
         return retroRepository.findAll();
     }
 
     @PostMapping("/retro")
-    public Produto_retro salvarRetro(@RequestBody Produto_retro jogo) {
+    public ProdutoRetro salvarRetro(@RequestBody ProdutoRetro jogo) {
         return retroRepository.save(jogo);
     }
 
     // --- ROTAS PARA INDIE ---
 
     @GetMapping("/indie") // Acessa em: /jogos/indie
-    public List<Produto_indie> listarIndies() {
+    public List<ProdutoIndie> listarIndies() {
         return indieRepository.findAll();
     }
 
     @PostMapping("/indie")
-    public Produto_indie salvarIndie(@RequestBody Produto_indie jogo) {
+    public ProdutoIndie salvarIndie(@RequestBody ProdutoIndie jogo) {
         return indieRepository.save(jogo);
     }
 }
