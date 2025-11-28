@@ -9,13 +9,19 @@ export default function PerfilUsuario() {
   
   return (
     <>
-        <Header/>
-        <h1 className="title">
-          Olá, {user?.nome || "visitante"}!
+      <Header/>
+        
+      <div className="perfil-container">
+        <img className="perfil-foto" src="/imagens/perfil.jpg" alt="Foto de perfil" />
+
+        <h1 className="perfil-nome">
+          Olá, {user?.nome || "Visitante"}!
         </h1>
-        <div className="jogos-own">
-          <span className="jogos-user">Seus jogos:</span>
-        </div>
+      </div>
+
+      <div className="jogos-own">
+        <span className="jogos-user">Seus jogos:</span>
+      </div>
     </>
   )
 }
