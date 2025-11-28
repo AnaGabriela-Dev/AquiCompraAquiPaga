@@ -14,6 +14,8 @@ public abstract class Produto {
     @Column(columnDefinition = "TEXT")
     private String descricao;
 
+    private double preco;
+
     private String imagemUrl;
 
     // Construtor vazio
@@ -28,4 +30,6 @@ public abstract class Produto {
     public void setDescricao(String descricao) { this.descricao = descricao; }
     public String getImagemUrl() { return imagemUrl; }
     public void setImagemUrl(String imagemUrl) { this.imagemUrl = imagemUrl; }
+    public double getPreco() { return preco; }
+    public void setPreco(double preco) { this.preco = preco; }
 }
