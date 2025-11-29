@@ -1,6 +1,7 @@
 import { Header } from "../components/Header";
 import { padraoFieldStyle } from "../styles/textFieldStyles";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -9,6 +10,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Button from "@mui/material/Button";
 
 import "./cadastro.css"
+
 
 export default function Cadastro() {
   // 1. Estados para guardar o que o usuário digita
@@ -62,7 +64,10 @@ export default function Cadastro() {
         <div className="pai">
             <div className="box-cadastro">
             <h1>Cadastro</h1>
-            <p>Já possui uma conta? Entre aqui</p>
+            <p>
+              Já possui uma conta?
+              <Link to="/login" className="link-login"> Entre aqui</Link>
+            </p>
             
             {/* Campo NOME */}
             <TextField 

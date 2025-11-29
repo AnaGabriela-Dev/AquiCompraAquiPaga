@@ -8,12 +8,16 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import AquiPaga from "./pages/AquiPaga";
 import Perfil from "./pages/Perfil";
+import Pagamento from "./pages/Pagamento";
+import Finalizado from "./pages/Finalizado"
 
 export default function App() {
   const [cart, setCart] = useState([]);
+  const total = cart.reduce((acc, item) => acc + item.preco, 0);
+
 
   const addToCart = (item) => {
-    const itemExistente = cart.find((c) => c.id === item.id);
+    const itemExistente = cart.find((c) => c.uniqueId === item.uniqueId);
 
     if (itemExistente) {
       toast.error("Esse item já está no carrinho!", {
@@ -39,8 +43,8 @@ export default function App() {
     });
   };
 
-  const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  const removeFromCart = (uniqueId) => {
+    setCart(prev => prev.filter(item => item.uniqueId !== uniqueId));
   };
 
   useEffect(() => {
@@ -77,6 +81,8 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/aquiPaga" element={<AquiPaga cart={cart} removeFromCart={removeFromCart} />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/pagamento" element={<Pagamento cart={cart} setCart={setCart} total={total} />} />
+          <Route path="/fim-pagamento" element={<Finalizado/>} />
         </Routes>
       </BrowserRouter>
     </>

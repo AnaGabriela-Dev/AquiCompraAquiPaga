@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // <--- 1. Importação para mudar de página
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { Link } from "react-router-dom";
 
 import TextField from '@mui/material/TextField';
 import IconButton from "@mui/material/IconButton";
@@ -63,7 +64,9 @@ export default function Login() {
         <div className="pai">
             <div className="box-login">
             <h1>Entrar</h1>
-            <p>Não possui uma conta? Crie uma aqui!</p>
+            <p>Não possui uma conta? 
+              <Link to="/cadastro" className="link-login"> Crie uma aqui!</Link>
+            </p>
 
             <TextField 
               required 

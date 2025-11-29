@@ -16,6 +16,16 @@
     border-radius: 5px;
 }
 
+.link-login {
+  color: #4a120c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-login:hover {
+  text-decoration: underline;
+}
+
 p{
     margin-top: 0px;
     padding-top: 0px;

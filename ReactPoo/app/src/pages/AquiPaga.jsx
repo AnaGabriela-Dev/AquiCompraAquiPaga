@@ -1,8 +1,12 @@
 import { Header } from "../components/Header";
+import { useNavigate } from "react-router-dom";
 
 import "./aquiPaga.css"
 
 export default function AquiPaga({cart, removeFromCart}) {
+    const navigate = useNavigate();
+    const total = cart.reduce((acc, item) => acc + item.preco, 0);
+
     return(
         <>
             <Header/>
@@ -25,7 +29,7 @@ export default function AquiPaga({cart, removeFromCart}) {
                                 </div>
                                 <button 
                                     className="remove-button" 
-                                    onClick={() => removeFromCart(item.id)}
+                                    onClick={() => removeFromCart(item.uniqueId)}
                                 >
                                     Remover
                                 </button>
@@ -33,6 +37,16 @@ export default function AquiPaga({cart, removeFromCart}) {
                         ))}
                     </div>
                 )}
+            </div>
+
+            <div className="pagamento-area">
+                <p className="cart-total">Total: R$ {total.toFixed(2)}</p>
+                <button 
+                    className="confirm-button"
+                    onClick={() => navigate("/pagamento")}
+                >
+                    Confirmar compra
+                </button>
             </div>
         </>
     )

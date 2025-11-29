@@ -109,3 +109,15 @@ html, body {
   font-size: 60px;
   margin-bottom: 20px;
 }
+
+.tituloStyle {
+  color: white;
+  font-size : 80px;
+  transform: translateY(-50px);
+}
+
+.textStyle {
+  color: white;
+  font-size: 30px;
+  transform: translateY(-10px);
+}
