@@ -1,37 +1,22 @@
 package aqui.controller;
 
-import aqui.Game;
-import aqui.GameCategory;
-import aqui.repository.GameRepository;
+import aqui.Game; // Sua nova classe única
+import aqui.repository.GameRepository; // Seu novo repositório único
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/jogos")
+@RequestMapping("/games")
 @CrossOrigin(origins = "*")
 public class GameController {
 
     @Autowired
-    private GameRepository gameRepository;
+    private GameRepository repository;
 
-    // LISTAR TODOS OS JOGOS
     @GetMapping
     public List<Game> listarTodos() {
-        return gameRepository.findAll();
-    }
-
-    // LISTAR POR CATEGORIA (INDIE OU RETRO)
-    @GetMapping("/{categoria}")
-    public List<Game> listarPorCategoria(@PathVariable String categoria) {
-        GameCategory cat = GameCategory.valueOf(categoria.toUpperCase());
-        return gameRepository.findByCategoria(cat);
-    }
-
-    // SALVAR NOVO JOGO
-    @PostMapping
-    public Game salvar(@RequestBody Game game) {
-        return gameRepository.save(game);
+        return repository.findAll(); // Traz tudo misturado
     }
 }

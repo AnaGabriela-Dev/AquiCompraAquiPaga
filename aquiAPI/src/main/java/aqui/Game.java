@@ -3,6 +3,7 @@ package aqui;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "game")
 public class Game {
 
     @Id
@@ -14,6 +15,8 @@ public class Game {
 
     @Enumerated(EnumType.STRING)
     private GameCategory categoria;
+    private String descricao;
+    private String imagemUrl;
 
     public Long getId() {
         return id;
@@ -38,4 +41,19 @@ public class Game {
     public void setCategoria(GameCategory categoria) {
         this.categoria = categoria;
     }
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;}
+    public String getImagemUrl() {
+        return imagemUrl;}
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;}
 }

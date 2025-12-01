@@ -1,7 +1,7 @@
 import "../index.css"
 import { useEffect, useState } from "react";
 import { GameCards } from "./GameCard";
-import { api } from "../lib/axios";
+import { api } from "../lib/axios"; // Supondo que api esteja configurada para http://localhost:8080
 
 export function Corpo({ addToCart }) {
     const [opacity, setOpacity] = useState(1);
@@ -9,7 +9,7 @@ export function Corpo({ addToCart }) {
     const [jogosRetro, setJogosRetro] = useState([]);
     const [jogosIndie, setJogosIndie] = useState([]);
 
-    // Efeito do fade no scroll (igual antes)
+    // Efeito do fade no scroll (Mantido original)
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
@@ -22,15 +22,24 @@ export function Corpo({ addToCart }) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Carregar jogos do backend
+    // --- AQUI ESTÁ A MUDANÇA ---
+    // Carregar jogos do backend (Endpoint Único /games)
     useEffect(() => {
         async function fetchJogos() {
             try {
-                const indie = await api.get("/jogos/INDIE");
-                const retro = await api.get("/jogos/RETRO");
+                // 1. Busca TUDO na rota /games
+                const response = await api.get("/games");
+                const todosJogos = response.data;
 
-                setJogosIndie(indie.data);  // já vem com id, nome, preco, categoria
-                setJogosRetro(retro.data);
+                // 2. Filtra aqui no Javascript
+                // Indies: Preço > 0
+                const indies = todosJogos.filter(jogo => jogo.preco && jogo.preco > 0);
+                
+                // Retrô: Preço 0 ou nulo
+                const retro = todosJogos.filter(jogo => !jogo.preco || jogo.preco === 0);
+
+                setJogosIndie(indies);
+                setJogosRetro(retro);
 
             } catch (error) {
                 console.error("Erro ao buscar jogos:", error);
@@ -42,6 +51,7 @@ export function Corpo({ addToCart }) {
 
     return (
         <div>
+            {/* Cabeçalho com fade (Mantido original) */}
             <div className="corpoSite" style={{ opacity }}>
                 <h1 className="tituloStyle">Aqui compra, aqui paga</h1>
                 <p className="textStyle">
@@ -49,11 +59,14 @@ export function Corpo({ addToCart }) {
                 </p>
             </div>
 
+            {/* Seção Indies */}
             <section className="secJogos">
                 <h2 style={{ marginBottom: "60px" }}>Jogos Indie</h2>
+                {/* Passa a lista filtrada para o seu componente de cards */}
                 <GameCards games={jogosIndie} addToCart={addToCart} />
             </section>
 
+            {/* Seção Retrô */}
             <section className="secRetro">
                 <h2 style={{ marginBottom: "60px" }}>Jogos Retrô</h2>
                 <GameCards games={jogosRetro} addToCart={addToCart} />
