@@ -1,5 +1,7 @@
 package aqui;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -12,6 +14,14 @@ public class Cliente {
     private String nome;
     private String email;
     private String senha;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "cliente_biblioteca",
+            joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id")
+    )
+    private List<Game> biblioteca = new ArrayList<>();
 
     public Cliente() {
     }
@@ -33,4 +43,6 @@ public class Cliente {
 
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
+    public List<Game> getBiblioteca() { return biblioteca; }
+    public void setBiblioteca(List<Game> biblioteca) { this.biblioteca = biblioteca; }
 }

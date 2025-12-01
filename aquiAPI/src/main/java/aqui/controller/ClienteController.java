@@ -19,6 +19,7 @@ public class ClienteController {
     public Cliente cadastrar(@RequestBody Cliente novoCliente) {
         return repository.save(novoCliente);
     }
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Cliente dadosLogin) {
         // Busca o cliente no banco pelo email que veio do Front
@@ -35,5 +36,13 @@ public class ClienteController {
         } else {
             return ResponseEntity.status(401).body("A senha inserida está incorreta!");
         }
+    }
+
+    // --- NOVO MÉTODO: Buscar dados completos (incluindo biblioteca) pelo ID ---
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id) {
+        return repository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

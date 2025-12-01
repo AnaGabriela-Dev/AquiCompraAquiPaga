@@ -1,7 +1,7 @@
 import "../index.css"
 import { useEffect, useState } from "react";
 import { GameCards } from "./GameCard";
-import { api } from "../lib/axios"; // Supondo que api esteja configurada para http://localhost:8080
+// import { api } from "../lib/axios"; // <-- Não vamos usar o axios agora para evitar erro de porta
 
 export function Corpo({ addToCart }) {
     const [opacity, setOpacity] = useState(1);
@@ -9,7 +9,7 @@ export function Corpo({ addToCart }) {
     const [jogosRetro, setJogosRetro] = useState([]);
     const [jogosIndie, setJogosIndie] = useState([]);
 
-    // Efeito do fade no scroll (Mantido original)
+    // Efeito do fade (Mantido)
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
@@ -17,26 +17,41 @@ export function Corpo({ addToCart }) {
             const newOpacity = Math.max(1 - scrollY / fadeEnd, 0);
             setOpacity(newOpacity);
         };
-
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // --- AQUI ESTÁ A MUDANÇA ---
-    // Carregar jogos do backend (Endpoint Único /games)
+    // --- CORREÇÃO AQUI: Carregar jogos com fetch direto e lógica de filtro ---
     useEffect(() => {
-        async function fetchJogos() {
+        async function carregarDados() {
             try {
-                // 1. Busca TUDO na rota /games
-                const response = await api.get("/games");
-                const todosJogos = response.data;
+                // 1. Pega usuário logado para filtrar biblioteca (se houver)
+                const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+                let idsJaComprados = [];
 
-                // 2. Filtra aqui no Javascript
-                // Indies: Preço > 0
-                const indies = todosJogos.filter(jogo => jogo.preco && jogo.preco > 0);
+                if (usuarioLogado) {
+                    const respCliente = await fetch(`http://localhost:8080/clientes/${usuarioLogado.id}`);
+                    if (respCliente.ok) {
+                        const dadosCliente = await respCliente.json();
+                        idsJaComprados = dadosCliente.biblioteca ? dadosCliente.biblioteca.map(g => g.id) : [];
+                    }
+                }
+
+                // 2. Busca TODOS os jogos
+                const response = await fetch("http://localhost:8080/games");
+                if (!response.ok) throw new Error("Erro ao conectar com a API");
+                
+                const todosJogos = await response.json();
+
+                // 3. Remove os que já estão na biblioteca
+                const jogosParaExibir = todosJogos.filter(jogo => !idsJaComprados.includes(jogo.id));
+
+                // 4. Separa nas prateleiras usando o PREÇO
+                // Indies: Preço maior que 0
+                const indies = jogosParaExibir.filter(jogo => jogo.preco && jogo.preco > 0);
                 
                 // Retrô: Preço 0 ou nulo
-                const retro = todosJogos.filter(jogo => !jogo.preco || jogo.preco === 0);
+                const retro = jogosParaExibir.filter(jogo => !jogo.preco || jogo.preco === 0);
 
                 setJogosIndie(indies);
                 setJogosRetro(retro);
@@ -45,13 +60,11 @@ export function Corpo({ addToCart }) {
                 console.error("Erro ao buscar jogos:", error);
             }
         }
-
-        fetchJogos();
+        carregarDados();
     }, []);
 
     return (
         <div>
-            {/* Cabeçalho com fade (Mantido original) */}
             <div className="corpoSite" style={{ opacity }}>
                 <h1 className="tituloStyle">Aqui compra, aqui paga</h1>
                 <p className="textStyle">
@@ -62,7 +75,6 @@ export function Corpo({ addToCart }) {
             {/* Seção Indies */}
             <section className="secJogos">
                 <h2 style={{ marginBottom: "60px" }}>Jogos Indie</h2>
-                {/* Passa a lista filtrada para o seu componente de cards */}
                 <GameCards games={jogosIndie} addToCart={addToCart} />
             </section>
 

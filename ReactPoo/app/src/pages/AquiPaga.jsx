@@ -43,7 +43,7 @@ export default function AquiPaga({cart, removeFromCart}) {
                                 </div>
                                 <button 
                                     className="remove-button" 
-                                    onClick={() => removeFromCart(item.Id)}
+                                    onClick={() => removeFromCart(item.id)}
                                 >
                                     Remover
                                 </button>

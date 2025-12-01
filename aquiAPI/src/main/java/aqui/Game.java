@@ -13,8 +13,7 @@ public class Game {
     private String nome;
     private double preco;
 
-    @Enumerated(EnumType.STRING)
-    private GameCategory categoria;
+    private String categoria;
     private String descricao;
     private String imagemUrl;
 
@@ -34,11 +33,11 @@ public class Game {
         this.preco = preco;
     }
 
-    public GameCategory getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(GameCategory categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
     public String getNome() {
