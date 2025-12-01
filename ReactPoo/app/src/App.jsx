@@ -13,11 +13,24 @@ import Finalizado from "./pages/Finalizado"
 
 export default function App() {
   const [cart, setCart] = useState([]);
-  const total = cart.reduce((acc, item) => acc + item.preco, 0);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const calcular = async () => {
+      if (cart.length > 0) {
+        const response = await api.post("/pagamento/calcular", { cart });
+        setTotal(response.data);
+      } else {
+        setTotal(0);
+      }
+    };
+    calcular();
+  }, [cart]);
+
 
 
   const addToCart = (item) => {
-    const itemExistente = cart.find((c) => c.uniqueId === item.uniqueId);
+    const itemExistente = cart.find((c) => c.Id === item.Id);
 
     if (itemExistente) {
       toast.error("Esse item já está no carrinho!", {
@@ -43,22 +56,9 @@ export default function App() {
     });
   };
 
-  const removeFromCart = (uniqueId) => {
-    setCart(prev => prev.filter(item => item.uniqueId !== uniqueId));
+  const removeFromCart = (Id) => {
+    setCart(prev => prev.filter(item => item.Id !== Id));
   };
-
-  useEffect(() => {
-      async function getData() {
-        try {
-          const response = await api.get("/hello");
-          console.log("Resposta da API:", response.data);
-        } catch (error) {
-          console.error("Erro ao chamar API:", error);
-        }
-      }
-
-      getData();
-    }, []);
     
 
   return (

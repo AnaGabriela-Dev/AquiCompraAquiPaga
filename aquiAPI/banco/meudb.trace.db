@@ -76,3 +76,24 @@ insert into jogosr (nome, descricao, preco, imagem_url) values('Tetris', 'Cláss
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+2025-12-01 17:08:39.653519-03:00 jdbc[33]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE JOGOS\000d\000aSET NOME = 'Omori',\000d\000a    DESCRICAO = 'Omori é um jogo eletrônico de RPG de 2020 desenvolvido pelo estúdio indie Omocat. Baseado na série de webcomics do diretor, Omori, há destaque para conceitos como ansiedade e depressão e elementos de terror psicológico.',\000d\000a    PRECO = 37.90\000d\000a   [*]CATEGORIA = 'INDIE'\000d\000aWHERE ID = 3"; SQL statement:
+UPDATE JOGOS
+SET NOME = 'Omori',
+    DESCRICAO = 'Omori é um jogo eletrônico de RPG de 2020 desenvolvido pelo estúdio indie Omocat. Baseado na série de webcomics do diretor, Omori, há destaque para conceitos como ansiedade e depressão e elementos de terror psicológico.',
+    PRECO = 37.90
+   CATEGORIA = 'INDIE'
+WHERE ID = 3 [42000-232]
+2025-12-01 17:12:37.645205-03:00 jdbc[33]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE JOGOS\000d\000aSET NOME = 'One Shot'\000d\000a        [*]DESCRICAO = 'OneShot é um jogo surreal de quebra-cabeça/aventura com visão de cima e mecânicas únicas. Você deve guiar uma criança por um mundo misterioso em uma missão para restaurar seu sol há muito extinto. O mundo sabe que você existe.',\000d\000a        PRECO = 32.90,\000d\000a        CATEGORIA = 'INDIE'\000d\000aWHERE ID = 9"; SQL statement:
+UPDATE JOGOS
+SET NOME = 'One Shot'
+        DESCRICAO = 'OneShot é um jogo surreal de quebra-cabeça/aventura com visão de cima e mecânicas únicas. Você deve guiar uma criança por um mundo misterioso em uma missão para restaurar seu sol há muito extinto. O mundo sabe que você existe.',
+        PRECO = 32.90,
+        CATEGORIA = 'INDIE'
+WHERE ID = 9 [42000-232]
+2025-12-01 17:22:02.925429-03:00 jdbc[33]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE JOGOS\000d\000aSET CATEGORIA = 'RETRO',\000d\000a[*]WHERE ID = 15"; expected "identifier"; SQL statement:
+UPDATE JOGOS
+SET CATEGORIA = 'RETRO',
+WHERE ID = 15 [42001-232]

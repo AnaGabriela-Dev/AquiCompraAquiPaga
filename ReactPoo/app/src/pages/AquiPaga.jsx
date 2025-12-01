@@ -1,11 +1,25 @@
 import { Header } from "../components/Header";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { api } from "../lib/axios";
 
 import "./aquiPaga.css"
 
 export default function AquiPaga({cart, removeFromCart}) {
     const navigate = useNavigate();
-    const total = cart.reduce((acc, item) => acc + item.preco, 0);
+    const [total, setTotal] = useState(0);
+    
+    useEffect(() => {
+        const calcular = async () => {
+          if (cart.length > 0) {
+            const response = await api.post("/pagamento/calcular", { cart });
+            setTotal(response.data);
+          } else {
+            setTotal(0);
+          }
+        };
+        calcular();
+      }, [cart]);
 
     return(
         <>
@@ -29,7 +43,7 @@ export default function AquiPaga({cart, removeFromCart}) {
                                 </div>
                                 <button 
                                     className="remove-button" 
-                                    onClick={() => removeFromCart(item.uniqueId)}
+                                    onClick={() => removeFromCart(item.Id)}
                                 >
                                     Remover
                                 </button>

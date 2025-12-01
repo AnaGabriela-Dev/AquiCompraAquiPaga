@@ -59,8 +59,8 @@ public class Carrinho {
         this.metodoPagamento = metodoPagamento;
     }
 
-    public void adicionarItem(ProdutoIndie produto, int quantidade, double precoUni) {
-        ItemCarrinho item = new ItemCarrinho(produto, quantidade, precoUni);
+    public void adicionarItem(Game game, int quantidade, double precoUni) {
+        ItemCarrinho item = new ItemCarrinho(game, quantidade, precoUni);
         itens.add(item);
     } 
 

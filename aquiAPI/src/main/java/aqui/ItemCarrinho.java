@@ -1,26 +1,26 @@
 package aqui;
 
 public class ItemCarrinho {
-    private ProdutoIndie produto;
+    private Game game;
     private int quantidade;
     private double precoUni;
 
-    public ItemCarrinho(ProdutoIndie produto, int quantidade, double precoUni) {
-        this.produto = produto;
+    public ItemCarrinho(Game game, int quantidade, double precoUni) {
+        this.game = game;
         this.quantidade = quantidade;
         this.precoUni = precoUni;
     }
 
-    public void setProduto() {
-        this.produto = produto;
+    public void setGame() {
+        this.game = game;
     }
 
     public void setQuantidade() {
         this.quantidade = quantidade;
     }
 
-    public ProdutoIndie getProduto() {
-        return this.produto;
+    public Game getGame() {
+        return this.game;
     }
 
     public int getquantidade() {
@@ -36,7 +36,7 @@ public class ItemCarrinho {
     }
 
     public double subtotal() {
-        return produto.getPreco() * quantidade;
+        return game.getPreco() * quantidade;
     }
 
 }
