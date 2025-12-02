@@ -1,4 +1,6 @@
 -- 1. Limpeza (Apaga dados velhos para não duplicar)
+DELETE FROM compra_games;
+DELETE FROM compra;
 DELETE FROM game;
 
 -- 2. Reseta o ID para começar do 1
