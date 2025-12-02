@@ -2,12 +2,16 @@ import { Header } from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { api } from "../lib/axios";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 import "./aquiPaga.css"
 
 export default function AquiPaga({cart, removeFromCart}) {
     const navigate = useNavigate();
     const [total, setTotal] = useState(0);
+    const { user } = useContext(UserContext);
+    const userId = user?.id;   // 🎯 AQUI ESTÁ O ID
     
     useEffect(() => {
         const calcular = async () => {
@@ -43,7 +47,7 @@ export default function AquiPaga({cart, removeFromCart}) {
                                 </div>
                                 <button 
                                     className="remove-button" 
-                                    onClick={() => removeFromCart(item.Id)}
+                                    onClick={() => removeFromCart(item.id)}
                                 >
                                     Remover
                                 </button>

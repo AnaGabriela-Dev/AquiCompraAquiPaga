@@ -3,21 +3,48 @@ import { useNavigate } from "react-router-dom";
 
 import "./pagamento.css";
 import { Header } from "../components/Header";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import { api } from "../lib/axios";
 
 export default function Pagamento({ cart, setCart, total }) {
     const [metodo, setMetodo] = useState(null);
     const navigate = useNavigate();
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [processando, setProcessando] = useState(false);
+    const { user } = useContext(UserContext);
 
 
-    const handlePagar = () => {
-        setProcessando(true);  // ativa animação
-        setCart([]);           // limpa o carrinho
+    const handlePagar = async () => {
+        if (!paymentMethod) {
+            alert("Escolha um método de pagamento!");
+            return;
+        }
 
-        setTimeout(() => {
-            navigate("/fim-pagamento");
-        }, 2000); // 2 segundos de animação
+        if (!user?.id) {
+            alert("Você precisa estar logado!");
+            return;
+        }
+
+        setProcessando(true);
+
+        try {
+            await api.post("/compras", {
+                userId: user.id,
+                jogosIds: cart.map(j => j.id)
+            });
+
+            setCart([]);
+
+            setTimeout(() => {
+                navigate("/fim-pagamento");
+            }, 1500);
+
+        } catch (erro) {
+            console.error(erro);
+            alert("Erro ao registrar compra.");
+            setProcessando(false);
+        }
     };
 
 

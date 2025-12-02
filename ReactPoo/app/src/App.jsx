@@ -30,7 +30,7 @@ export default function App() {
 
 
   const addToCart = (item) => {
-    const itemExistente = cart.find((c) => c.Id === item.Id);
+    const itemExistente = cart.find((c) => c.id === item.id);
 
     if (itemExistente) {
       toast.error("Esse item já está no carrinho!", {
@@ -56,8 +56,8 @@ export default function App() {
     });
   };
 
-  const removeFromCart = (Id) => {
-    setCart(prev => prev.filter(item => item.Id !== Id));
+  const removeFromCart = (id) => {
+    setCart(prev => prev.filter(item => item.id !== id));
   };
     
 

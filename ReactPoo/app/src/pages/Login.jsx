@@ -43,9 +43,14 @@ export default function Login() {
       if (resposta.ok) {
         // SUCESSO: O Java mandou o objeto Cliente (JSON)
         const cliente = await resposta.json();
+
+        // ❗ AQUI: SALVA O ID DO USUÁRIO
+        localStorage.setItem("userId", cliente.id);
+
         login(cliente);  // <-- SALVA O USUÁRIO NO CONTEXTO
         alert("Bem-vindo(a), " + cliente.nome + "!");
         navigate("/"); // Redireciona para a Home (Vitrine)
+        
       } else {
         // ERRO: O Java mandou uma mensagem de texto explicativa (404 ou 401)
         const mensagemErro = await resposta.text();

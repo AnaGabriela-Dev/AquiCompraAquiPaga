@@ -22,32 +22,46 @@ export function Corpo({ addToCart }) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // --- AQUI ESTÁ A MUDANÇA ---
-    // Carregar jogos do backend (Endpoint Único /games)
     useEffect(() => {
-        async function fetchJogos() {
-            try {
-                // 1. Busca TUDO na rota /games
-                const response = await api.get("/games");
-                const todosJogos = response.data;
+    async function fetchJogos() {
+        try {
+            // 1. Busca TODOS os jogos
+            const response = await api.get("/games");
+            const todosJogos = response.data;
 
-                // 2. Filtra aqui no Javascript
-                // Indies: Preço > 0
-                const indies = todosJogos.filter(jogo => jogo.preco && jogo.preco > 0);
-                
-                // Retrô: Preço 0 ou nulo
-                const retro = todosJogos.filter(jogo => !jogo.preco || jogo.preco === 0);
+            // 2. Busca userId salvo
+            const userId = localStorage.getItem("userId");
 
-                setJogosIndie(indies);
-                setJogosRetro(retro);
+            let jogosDoUsuario = [];
 
-            } catch (error) {
-                console.error("Erro ao buscar jogos:", error);
+            // 3. Buscar jogos comprados
+            if (userId) {
+                const compradoRes = await api.get(`/compras/${userId}`);
+                jogosDoUsuario = compradoRes.data; 
             }
-        }
 
-        fetchJogos();
-    }, []);
+            // 4. IDs de jogos já comprados
+            const idsComprados = jogosDoUsuario.map(j => j.id);
+
+            // 5. Filtrar jogos ainda não possuídos
+            const naoComprados = todosJogos.filter(
+                jogo => !idsComprados.includes(jogo.id)
+            );
+
+            // 6. Classificar Indie / Retrô
+            const indies = naoComprados.filter(jogo => jogo.preco > 0);
+            const retro = naoComprados.filter(jogo => jogo.preco === 0);
+
+            setJogosIndie(indies);
+            setJogosRetro(retro);
+
+        } catch (error) {
+            console.error("Erro ao buscar jogos:", error);
+        }
+    }
+
+    fetchJogos();
+}, []);
 
     return (
         <div>

@@ -68,13 +68,13 @@ INSERT INTO game (ID, DESCRICAO, NOME, PRECO, CATEGORIA, IMAGEM_URL) VALUES
 (21, 'Jogo de futebol retrô, famoso no Brasil, conhecido por sua jogabilidade clássica e divertida ao longo dos anos.', 'Ronaldinho Soccer 97', 0.0, 'RETRO', '/imagens/ronaldinhoSoccer97.jpg');
 
 INSERT INTO game (ID, DESCRICAO, NOME, PRECO, CATEGORIA, IMAGEM_URL) VALUES
-(22, 'Considerado por muitos o melhor Bomberman já feito, trazendo fases famosas e power-ups divertidos.', 'Super Bomberman 4', 0.0, 'RETRO', '/imagens/SuperBomberman4.jpg');
+(22, 'Considerado por muitos o melhor Bomberman já feito, trazendo fases famosas e power-ups divertidos.', 'Super Bomberman 4', 0.0, 'RETRO', '/imagens/superBomberman4.jpg');
 
 INSERT INTO game (ID, DESCRICAO, NOME, PRECO, CATEGORIA, IMAGEM_URL) VALUES
-(23, 'Remake de Pokémon Green, permitindo explorar Kanto, capturar criaturas e derrotar a Elite Four.', 'Pokémon LeafGreen', 0.0, 'RETRO', '/imagens/PokemonLeafGreen.jpg');
+(23, 'Remake de Pokémon Green, permitindo explorar Kanto, capturar criaturas e derrotar a Elite Four.', 'Pokémon LeafGreen', 0.0, 'RETRO', '/imagens/PokémonLeafGreen.jpg');
 
 INSERT INTO game (ID, DESCRICAO, NOME, PRECO, CATEGORIA, IMAGEM_URL) VALUES
-(24, 'Versão aprimorada da série Pokémon, com novos gráficos, enredo expandido e novos desafios para completar a Pokédex.', 'Pokémon Red', 0.0, 'RETRO', '/imagens/PokemonRed.jpg');
+(24, 'Versão aprimorada da série Pokémon, com novos gráficos, enredo expandido e novos desafios para completar a Pokédex.', 'Pokémon Red', 0.0, 'RETRO', '/imagens/PokémonRed.jpg');
 
 INSERT INTO game (ID, DESCRICAO, NOME, PRECO, CATEGORIA, IMAGEM_URL) VALUES
 (25, 'Jogo de plataforma onde você controla Aladdin em sua aventura pelo deserto, enfrentando inimigos em cenários icônicos.', 'Sunset Riders', 0.0, 'RETRO', '/imagens/sunsetRiders.jpg');
@@ -89,4 +89,4 @@ INSERT INTO game (ID, DESCRICAO, NOME, PRECO, CATEGORIA, IMAGEM_URL) VALUES
 (28, 'Jogo de batalha com personagens icônicos da Marvel e da Capcom, com combates frenéticos.', 'Marvel vs Capcom', 0.0, 'RETRO', '/imagens/marvelVsCapcom.jpg');
 
 INSERT INTO game (ID, DESCRICAO, NOME, PRECO, CATEGORIA, IMAGEM_URL) VALUES
-(29, 'Aventuras e confusões no colégio de adolescentes da Rockstar ambientado em 2006, enquanto Jimmy Hopkins tenta acabar com o caos escolar e se tornar o aluno mais influente.', 'Bully', 0.0, 'RETRO', '/imagens/bully.jpg');
+(29, 'Aventuras e confusões no colégio de adolescentes da Rockstar ambientado em 2006, enquanto Jimmy Hopkins tenta acabar com o caos escolar e se tornar o aluno mais influente.', 'Bully', 0.0, 'RETRO', '/imagens/bully.JPG');
