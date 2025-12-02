@@ -1,106 +1,62 @@
 package aqui;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "carrinhos")
 public class Carrinho {
-    private LocalDate data;
-    private StatusPedidos status;
-    private List<ItemCarrinho> itens = new ArrayList<>();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    private IPagamento metodoPagamento;
 
-    public Carrinho(Cliente cliente) {
-        this.cliente = cliente;
-        this.data = LocalDate.now();
-        this.status = StatusPedidos.PENDENTE;
+    // --- LISTA DE JOGOS (Essencial para o Controller funcionar) ---
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "carrinho_jogos",
+            joinColumns = @JoinColumn(name = "carrinho_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id")
+    )
+    private List<Game> produtos = new ArrayList<>();
+
+    private Double valorTotal = 0.0;
+
+    public Carrinho() {}
+
+    // --- CÁLCULO DO TOTAL ---
+    // Soma os preços dos jogos. Se a lista for vazia, retorna 0.
+    public Double getValorTotal() {
+        if (produtos == null || produtos.isEmpty()) return 0.0;
+
+        return produtos.stream()
+                .mapToDouble(Game::getPreco) // Pega o preço (double) diretamente
+                .sum();
     }
 
-    private StatusPedidos statusPedido = StatusPedidos.PENDENTE;
+    // --- GETTERS E SETTERS (O erro estava na falta destes) ---
 
-    public StatusPedidos getStatusPedido() {
-        return statusPedido;
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Cliente getCliente() { return cliente; }
+    public void setCliente(Cliente cliente) { this.cliente = cliente; }
+
+    // O Controller chama este método: carrinho.getProdutos()
+    public List<Game> getProdutos() { return produtos; }
+    public void setProdutos(List<Game> produtos) { this.produtos = produtos; }
+
+    // --- MÉTODOS AUXILIARES (Facilitam adicionar/remover) ---
+    public void adicionarProduto(Game jogo) {
+        this.produtos.add(jogo);
     }
 
-    public void setStatusPedido(StatusPedidos statusPedido) {
-        this.statusPedido = statusPedido;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public List<ItemCarrinho> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ItemCarrinho> itens) {
-        this.itens = itens;
-    }
-
-    public IPagamento getMetodoPagamento() {
-        return metodoPagamento;
-    }
-
-    public void setMetodoPagamento(IPagamento metodoPagamento) {
-        this.metodoPagamento = metodoPagamento;
-    }
-
-    public void adicionarItem(Game game, int quantidade, double precoUni) {
-        ItemCarrinho item = new ItemCarrinho(game, quantidade, precoUni);
-        itens.add(item);
-    } 
-
-    public double calcularTotal() {
-        double total = 0.0;
-        for (ItemCarrinho item : itens) {
-            total += item.subtotal();
-        }
-        return total;
-    }
-
-
-    public void removeItem(ItemCarrinho item) {
-        itens.remove(item);
-    }
-    public double aplicarDesconto(double desconto) {
-        if (desconto < 0 || desconto > 1) {
-            throw new IllegalArgumentException("O desconto deve estar entre 0 e 1");
-        }
-
-        double total = calcularTotal();
-        double valorComDesconto = total * (1 - desconto);
-
-        return valorComDesconto;
-    }
-
-
-
-    public boolean processarPagamento() {
-        double valor = calcularTotal();
-        if (metodoPagamento != null) {
-            boolean sucesso = metodoPagamento.processarPagamento(valor);
-
-            if (sucesso) {
-                statusPedido = StatusPedidos.PROCESSANDO;
-            } else {
-                statusPedido = StatusPedidos.PENDENTE;
-            }
-            return sucesso;
-        }
-        return false;
+    public void removerProduto(Game jogo) {
+        this.produtos.remove(jogo);
     }
 }
